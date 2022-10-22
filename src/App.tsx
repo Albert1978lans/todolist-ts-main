@@ -17,9 +17,16 @@ function App() {
         { id: v1(), title: "Redux", isDone: false },
         { id: v1(), title: "RestApi", isDone: false }
     ])
-    console.log(tasks)
-    let [filter,setFilter] = useState<FilterType>('all')
 
+    let [filter,setFilter] = useState<FilterType>('all')
+    let [text, setText] = useState<string>('')
+
+    function addTask(newTitle: string)  {
+        let newTask = {id: v1(), title: newTitle, isDone: false}
+        let addedTasks = [newTask, ...tasks]
+        console.log(addedTasks)
+        setTasks(addedTasks)
+    }
 
     function removeTask(id: string) {
         let filteredTasks = tasks.filter(task => task.id !== id )
@@ -52,6 +59,7 @@ function App() {
                 tasks={taskForTodo}
                 removeTask={removeTask}
                 changeFilter={changeFilter}
+                addTask={addTask}
             />
             {/*<Todolist title={title2} tasks={tasks2}/>*/}
         </div>
