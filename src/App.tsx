@@ -8,7 +8,6 @@ export type FilterType = 'all' | 'active' | 'completed'
 function App() {
 
     const title = 'What to learn - 1'
-    // const title2 = 'What to learn - 2'
 
     let [tasks, setTasks] = useState<Array<TypeTasks>>([
         { id: v1(), title: "HTML&CSS", isDone: true },
@@ -19,7 +18,6 @@ function App() {
     ])
 
     let [filter,setFilter] = useState<FilterType>('all')
-    let [text, setText] = useState<string>('')
 
     function addTask(newTitle: string)  {
         let newTask = {id: v1(), title: newTitle, isDone: false}
@@ -32,11 +30,6 @@ function App() {
         let filteredTasks = tasks.filter(task => task.id !== id )
         setTasks(filteredTasks)
     }
-
-    // const tasks2 = [
-    //     { id: 1, title: "Hello world", isDone: true },
-    //     { id: 2, title: "I am Happy", isDone: false },
-    // ]
 
     function changeFilter(value: FilterType) {
         setFilter(value)
@@ -61,7 +54,6 @@ function App() {
                 changeFilter={changeFilter}
                 addTask={addTask}
             />
-            {/*<Todolist title={title2} tasks={tasks2}/>*/}
         </div>
     );
 }
