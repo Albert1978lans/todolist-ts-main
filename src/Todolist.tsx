@@ -19,14 +19,14 @@ export function Todolist(props: TodolistPropsType) {
 
     const [newTaskTitle, setNewTaskTitle] = useState('')
 
-    const onNewTitleChangeInputHandler=(e: ChangeEvent<HTMLInputElement>) =>  {setNewTaskTitle(e.currentTarget.value)}
-    const onKeyPressAddTaskHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    const onNewTitleChangeHandler=(e: ChangeEvent<HTMLInputElement>) =>  {setNewTaskTitle(e.currentTarget.value)}
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.charCode === 13) {
             props.addTask(newTaskTitle)
             setNewTaskTitle('')
         }
     }
-    const onClickAddTaskHandler = () => {
+    const addTask = () => {
         props.addTask(newTaskTitle)
         setNewTaskTitle('')
     }
@@ -43,18 +43,18 @@ export function Todolist(props: TodolistPropsType) {
             <div>
                 <input type="text"
                        value={newTaskTitle}
-                       onChange={onNewTitleChangeInputHandler}
-                       onKeyPress={onKeyPressAddTaskHandler}/>
+                       onChange={onNewTitleChangeHandler}
+                       onKeyPress={onKeyPressHandler}/>
 
-                <button onClick={onClickAddTaskHandler}>+</button>
+                <button onClick={addTask}>+</button>
             </div>
             {props.tasks.map((el) => {
-                const onClickRemoveTaskHandler = () => {props.removeTask(el.id)}
+                const onRemoveHandler = () => {props.removeTask(el.id)}
                 return (
 
                     <li key={el.id}><input type="checkbox" checked={el.isDone}/><span>{el.title}</span>
 
-                        <button onClick={onClickRemoveTaskHandler}>x</button>
+                        <button onClick={onRemoveHandler}>x</button>
 
                     </li>
 
